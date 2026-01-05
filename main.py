@@ -25,8 +25,8 @@ ITENS_GAS = [
     "Detetores: Efetuar o teste de detenção a todos os detetores...",
     "Sinalizador Ótico-Acústico: Verificar a visibilidade e som",
     "Sinalizador Ótico-Acústico: Verificar a fixação e estado de conservação",
-    "Sinalizador Ótico-Acústico: Verificar a descrição <Atmosfera Perigosa - Tipo de Gás>",
-    "Sinalizador Ótico-Acústico: Verificar a descrição <Atmosfera Saturada - CO>",
+    "Sinalizador Ótico-Acústico: Verificar a descrição 'Atmosfera Perigosa - Tipo de Gás'",
+    "Sinalizador Ótico-Acústico: Verificar a descrição 'Atmosfera Saturada - CO'",
     "Central: Efetuar ensaios de zona",
     "Central: Verificar as funções de monitorização de anomalias",
     "Central: Confirmar que a programação do equipamento está de acordo...",
@@ -41,16 +41,27 @@ ITENS_GAS = [
 ]
 
 ITENS_INCENDIO = [
-    "Verificação visual da Central de Incêndio (CDI)",
-    "Verificação do estado das baterias e fonte de alimentação",
-    "Teste de funcionamento de botoneiras de alarme",
-    "Teste de detetores (Fumo/Térmico) por amostragem",
-    "Verificação das sirenes e sinalizadores óticos",
-    "Teste de transmissão de alarme (comunicador)",
-    "Verificação dos painéis repetidores",
-    "Verificação de retentores de portas de fogo",
-    "Sinalização de segurança e plantas de emergência",
-    "Limpeza geral dos equipamentos"
+    "Inspeção Visual: Efetuar a inspeção visual da central e do conjunto dos detetores, botões de alarme e demais periféricos e verificar se existem danos visíveis ou outras condições que ponham em causa o funcionamento / desempenho do sistema",
+    "Inspeção Visual: Verificar se existe identificação de zonas (Sistema Convencional)",
+    "Detetores: Realizar ensaios de deteção a 25 por cento dos detetores, no mínimo 1 por zona, assegurando que ao fim de 2 anos todos os detetores serão testados",
+    "Detetores: Verificar se é conservado um espaço de pelo menos 0,5m e desimpedido em todas as direções abaixo de cada detetor",
+    "Botões de Alarme: Comprovar o correto funcionamento de todos os botões",
+    "Sirenes: Comprovar o correto funcionamento de todas as sirenes",
+    "Central: Verificar indicações visuais",
+    "Central: Verificar os botões e comandos",
+    "Central: Confirmar que a programação do equipamento está de acordo com o funcionamento atualmente aprovado para o edifício. De acordo com o projeto e subsequentes alterações registadas no registo de ocorrências / registo de segurança",
+    "Central: Comrpovar o correto funcionamento da unidade de alimentação e testar a carga das baterias de forma a garantir a autonomia mínima prevista no Regulamento Técnico de SCIE",
+    "Sinalizadores: Comprovar o correto funcionamento de todos os sinalizadores",
+    "Transmissor Telefónico: Comprovar o correto funcionamento da Transmissão / Receção",
+    "Fonte de Alimentação: Verificar o aperto dos bornes de ligação e garantir o estado de conservação e limpeza",
+    "Fonte de Alimentação: Comprovar o correto funcionamento",
+    "Fonte de Alimentação: Comprovar o correto funcionamento da unidade de alimentação e testar a carga das baterias de forma a garantir a autonomia mínima prevista no Regulamento Técnico de SCIE",
+    "Retentores: Lubrificar e limpar partes móveis",
+    "Interação a Sistemas Exteriores: Verificar o estado de operacionalidade da interação com outros equipamentos ou sistemas exteriores (por exemplo, elevadores, portas resistentes ao fogo, registos corta-fogo, sistemas de controlo de fumo e ventilação, quadros elétricos, etc.)",
+    "Painel Repetidor: Verificar indicações visuais",
+    "Painel Repetidor: Verificar os botões e comandos",
+    "Painel Repetidor: Comprovar o correto funcionamento da unidade de alimentação e testar a carga das baterias de forma a garantir a autonomia mínima prevista no Regulamento Técnico de SCIE"
+    
 ]
 
 ITENS_ELETRICO = [
@@ -270,11 +281,13 @@ def gerar_pdf_final(dados: dict, imagens: list):
 
     elif tipo == 'incendio':
         # Incêndio: Tipo de Sistema
+        print_field("Instalação:", dados.get('instalacao', ''))
         tipo_incendio = dados.get('tipo_incendio', '').title()
         print_field("Sistema:", tipo_incendio)
 
     elif tipo == 'eletrico':
         # Elétrico: kVA e Tipo PT
+        print_field("Instalação:", dados.get('instalacao', ''))
         kva = dados.get('pt_kva', '')
         tipo_pt = dados.get('tipo_pt', '')
         print_field("Potência PT:", f"{kva} kVA")
@@ -423,6 +436,7 @@ html_app = f"""
                         <option value="enderecavel">Endereçável</option>
                     </select>
                 </div>
+                <div class="grupo-input"><label>Instalação:</label><input type="text" name="instalacao"></div>
                 <table>
                     <tr><th>Ação Verificação</th><th>V</th><th>NA</th><th>OBS</th></tr>
                     {gerar_linhas_tabela(ITENS_INCENDIO, 'check')}
@@ -444,6 +458,7 @@ html_app = f"""
                         </select>
                     </div>
                 </div>
+                <div class="grupo-input"><label>Instalação:</label><input type="text" name="instalacao"></div>
                 <br>
                 <table>
                     <tr><th>Ação Verificação</th><th>V</th><th>NA</th><th>OBS</th></tr>
