@@ -18,14 +18,29 @@ app.add_middleware(
 # --- 1. LISTAS DE VERIFICAÇÃO (CHECKLISTS) ---
 
 ITENS_GAS = [
-    "Verificação do estado da central e indicadores luminosos",
-    "Verificação do estado das baterias (tensão e carga)",
-    "Ensaio de detetores com gás padrão/calibração",
-    "Verificação da atuação das eletroválvulas de corte",
-    "Verificação do sistema de interbloqueio (ventilação)",
-    "Verificação da sinalização ótica e acústica",
-    "Estado geral das tubagens e cablagens visíveis",
-    "Limpeza geral dos equipamentos"
+    "Inspeção Visual: Efetuar a inspeção visual da central e do conjunto dos detetores, botões de alarme e demais periféricos e verificar se existem danos visíveis ou outras condições que ponham em causa o funcionamento / desempenho do sistema",
+    "Inspeção Visual: Verificar se existe identificação de zonas / detetores",
+    "Detetores: Confirmar o posicionamento dos detetores em função do gás a detetar",
+    "Detetores: Verificar a validade",
+    "Detetores: Efetuar o teste de detenção a todos os detetores e verificar se estão calibrados (ajustar ao intervalo de valores recomendado pelo fabricante), quando aplicável",
+    "Sinalizador Ótico-Acústico: Verificar a visibilidade e som",
+    "Sinalizador Ótico-Acústico: Verificar a fixação e estado de conservação",
+    "Sinalizador Ótico-Acústico: Verificar a descrição <<Atmosfera Perigosa - Tipo de Gás>>",
+    "Sinalizador Ótico-Acústico: Verificar a descrição <<Atmosfera Saturada - CO>>",
+    "Central: Efetuar ensaios de zona",
+    "Central: Verificar as funções de monitorização de anomalias",
+    "Central: Confirmar que a programação do equipamento está de acordo com o funcionamento atual aprovado para o edifício de acordo com o projeto e subsequentes alterações registadas no registo de ocorrências / registo de segurança",
+    "Central: Verificar a capacidade de operar comandos de outros equipamentos interligados, designadamente ventilação (Monóxido de Carbono)",
+    "Central: Verificar a capacidade de operar comandos de outros equipamentos interligados, designadamente electroválvulas e ventilação (Gás Combustível)",
+    "Central: Comprovar o correto funcionamento da unidade de alimentação e testar a carga das baterias de forma a garantir a autonomia mínima prevista no Regulamento Técnico de SCIE",
+    "Central: Comprovar o correto funcionamento da unidade de alimentação",
+    "Fonte de Alimentação: Verificar o teste de carga das baterias",
+    "Fonte de Alimentação: Verificação das tensões de Entrada / Saída",
+    "Fonte de Alimentação: Limpeza e reaperto de bornes",
+    "Painel Repetidor: Verificar indicações visuais",
+    "Painel Repetidor: Verificar os botões e comandos"
+
+  
 ]
 
 ITENS_INCENDIO = [
@@ -400,7 +415,7 @@ html_app = f"""
                 </table>
             </div>
 
-            <h3>🛠️ Componentes Instalados (10x)</h3>
+            <h3> Listagem de Componentes Instalados</h3>
             <table>
                 <tr><th>Componente</th><th>Marca</th><th>Modelo</th><th>Qtd</th></tr>
                 {gerar_inputs_repetidos(10, [
@@ -411,7 +426,7 @@ html_app = f"""
                 ])}
             </table>
 
-            <h3>📏 Equipamentos Medida (10x)</h3>
+            <h3> Listagem dos Equipamentos de Medida e Ensaio Utilizados </h3>
             <table>
                 <tr><th>Equipamento</th><th>Data Calib.</th><th>Certificado</th><th>Entidade</th></tr>
                 {gerar_inputs_repetidos(10, [
@@ -422,7 +437,7 @@ html_app = f"""
                 ])}
             </table>
 
-            <h3>📝 Observações (10x)</h3>
+            <h3> Lista de Observações </h3>
             <table>
                 <tr><th style="width:50px;">OBS Nº</th><th>Descrição</th></tr>
                 {gerar_inputs_repetidos(10, [
