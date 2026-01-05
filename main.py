@@ -18,29 +18,26 @@ app.add_middleware(
 # --- 1. LISTAS DE VERIFICAÇÃO (CHECKLISTS) ---
 
 ITENS_GAS = [
-    "Inspeção Visual: Efetuar a inspeção visual da central e do conjunto dos detetores, botões de alarme e demais periféricos e verificar se existem danos visíveis ou outras condições que ponham em causa o funcionamento / desempenho do sistema",
+    "Inspeção Visual: Efetuar a inspeção visual da central e do conjunto dos detetores...",
     "Inspeção Visual: Verificar se existe identificação de zonas / detetores",
     "Detetores: Confirmar o posicionamento dos detetores em função do gás a detetar",
     "Detetores: Verificar a validade",
-    "Detetores: Efetuar o teste de detenção a todos os detetores e verificar se estão calibrados (ajustar ao intervalo de valores recomendado pelo fabricante), quando aplicável",
+    "Detetores: Efetuar o teste de detenção a todos os detetores...",
     "Sinalizador Ótico-Acústico: Verificar a visibilidade e som",
     "Sinalizador Ótico-Acústico: Verificar a fixação e estado de conservação",
-    "Sinalizador Ótico-Acústico: Verificar a descrição <<Atmosfera Perigosa - Tipo de Gás>>",
-    "Sinalizador Ótico-Acústico: Verificar a descrição <<Atmosfera Saturada - CO>>",
+    "Sinalizador Ótico-Acústico: Verificar a descrição <Atmosfera Perigosa - Tipo de Gás>",
+    "Sinalizador Ótico-Acústico: Verificar a descrição <Atmosfera Saturada - CO>",
     "Central: Efetuar ensaios de zona",
     "Central: Verificar as funções de monitorização de anomalias",
-    "Central: Confirmar que a programação do equipamento está de acordo com o funcionamento atual aprovado para o edifício de acordo com o projeto e subsequentes alterações registadas no registo de ocorrências / registo de segurança",
-    "Central: Verificar a capacidade de operar comandos de outros equipamentos interligados, designadamente ventilação (Monóxido de Carbono)",
-    "Central: Verificar a capacidade de operar comandos de outros equipamentos interligados, designadamente electroválvulas e ventilação (Gás Combustível)",
-    "Central: Comprovar o correto funcionamento da unidade de alimentação e testar a carga das baterias de forma a garantir a autonomia mínima prevista no Regulamento Técnico de SCIE",
-    "Central: Comprovar o correto funcionamento da unidade de alimentação",
+    "Central: Confirmar que a programação do equipamento está de acordo...",
+    "Central: Verificar a capacidade de operar comandos (Ventilação - CO)",
+    "Central: Verificar a capacidade de operar comandos (Eletroválvulas - Gás)",
+    "Central: Comprovar o correto funcionamento da unidade de alimentação e baterias",
     "Fonte de Alimentação: Verificar o teste de carga das baterias",
     "Fonte de Alimentação: Verificação das tensões de Entrada / Saída",
     "Fonte de Alimentação: Limpeza e reaperto de bornes",
     "Painel Repetidor: Verificar indicações visuais",
     "Painel Repetidor: Verificar os botões e comandos"
-
-  
 ]
 
 ITENS_INCENDIO = [
@@ -83,7 +80,6 @@ class PDF(FPDF):
         self.cell(0, 10, f'Página {self.page_no()}', 0, 0, 'C')
 
     def check_page_break(self, height_needed):
-        """Cria nova página se não houver espaço suficiente"""
         if self.get_y() + height_needed > 270:
             self.add_page()
 
@@ -93,41 +89,41 @@ class PDF(FPDF):
         self.cell(0, 10, "1. Ações de Verificação:", 0, 1)
         
         # Cabeçalho
-        self.set_font("Arial", 'B', 9)
+        self.set_font("Arial", 'B', 8)
         self.set_fill_color(240, 240, 240)
         self.cell(130, 8, "Ação / Parâmetro", 1, 0, 'L', True)
         self.cell(20, 8, "V", 1, 0, 'C', True)
         self.cell(20, 8, "NA", 1, 0, 'C', True)
         self.cell(20, 8, "OBS", 1, 1, 'C', True)
 
-        self.set_font("Arial", size=9)
+        self.set_font("Arial", size=8)
         for i, item in enumerate(itens):
             resp = respostas.get(f"check_{i}", "")
             
             x_start = self.get_x()
             y_start = self.get_y()
             
-            # Coluna Texto (MultiCell para quebrar linha se for grande)
+            # Texto da pergunta (MultiCell)
             self.multi_cell(130, 8, item, 1)
             
             y_end = self.get_y()
             altura = y_end - y_start
             
-            # Desenhar as caixas das respostas com a mesma altura
+            # Voltar para desenhar as caixas laterais
             self.set_xy(x_start + 130, y_start)
             
             def draw_cell(val):
                 txt = "X" if resp == val else ""
-                if resp == "OBS" and val == "OBS": self.set_font("Arial", 'B', 9)
+                if resp == "OBS" and val == "OBS": self.set_font("Arial", 'B', 8)
                 self.cell(20, altura, txt, 1, 0, 'C')
-                self.set_font("Arial", size=9)
+                self.set_font("Arial", size=8)
 
             draw_cell("V")
             draw_cell("NA")
             draw_cell("OBS")
             
             self.ln()
-            self.set_y(y_end) # Assegura cursor no sítio certo
+            self.set_y(y_end)
 
     def desenhar_tabela_componentes(self, dados):
         self.ln(5)
@@ -135,7 +131,6 @@ class PDF(FPDF):
         self.set_font("Arial", 'B', 12)
         self.cell(0, 10, "2. Listagem de Componentes Instalados / Substituídos:", 0, 1)
 
-        # Cabeçalho
         self.set_font("Arial", 'B', 8)
         self.set_fill_color(240, 240, 240)
         self.cell(70, 7, "Componente", 1, 0, 'L', True)
@@ -143,7 +138,6 @@ class PDF(FPDF):
         self.cell(50, 7, "Modelo", 1, 0, 'L', True)
         self.cell(20, 7, "Qtd", 1, 1, 'C', True)
 
-        # Linhas (10x)
         self.set_font("Arial", size=8)
         for i in range(10):
             comp = dados.get(f'comp_nome_{i}', '')
@@ -151,7 +145,7 @@ class PDF(FPDF):
             modelo = dados.get(f'comp_modelo_{i}', '')
             qtd = dados.get(f'comp_qtd_{i}', '')
 
-            if comp or marca or modelo: # Só imprime se tiver algo escrito
+            if comp or marca or modelo:
                 self.cell(70, 7, comp, 1)
                 self.cell(50, 7, marca, 1)
                 self.cell(50, 7, modelo, 1)
@@ -211,28 +205,16 @@ class PDF(FPDF):
         self.cell(0, 10, "Identificação do Técnico", 1, 1, 'L', True)
 
         self.set_font("Arial", size=9)
-        
-        # Linha 1: Nome e CC
-        self.cell(30, 8, "Nome:", 0, 0, 'L')
-        self.cell(100, 8, dados.get('tec_nome', ''), "B", 0, 'L')
-        self.cell(20, 8, "CC Nº:", 0, 0, 'R')
-        self.cell(40, 8, dados.get('tec_cc', ''), "B", 1, 'L')
+        self.cell(30, 8, "Nome:", 0, 0, 'L'); self.cell(100, 8, dados.get('tec_nome', ''), "B", 0, 'L')
+        self.cell(20, 8, "CC Nº:", 0, 0, 'R'); self.cell(40, 8, dados.get('tec_cc', ''), "B", 1, 'L')
 
-        # Linha 2: Morada
-        self.cell(30, 8, "Morada:", 0, 0, 'L')
-        self.cell(160, 8, dados.get('tec_morada', ''), "B", 1, 'L')
+        self.cell(30, 8, "Morada:", 0, 0, 'L'); self.cell(160, 8, dados.get('tec_morada', ''), "B", 1, 'L')
 
-        # Linha 3: Localidade e CP
-        self.cell(30, 8, "Localidade:", 0, 0, 'L')
-        self.cell(80, 8, dados.get('tec_localidade', ''), "B", 0, 'L')
-        self.cell(30, 8, "C. Postal:", 0, 0, 'R')
-        self.cell(50, 8, dados.get('tec_cp', ''), "B", 1, 'L')
+        self.cell(30, 8, "Localidade:", 0, 0, 'L'); self.cell(80, 8, dados.get('tec_localidade', ''), "B", 0, 'L')
+        self.cell(30, 8, "C. Postal:", 0, 0, 'R'); self.cell(50, 8, dados.get('tec_cp', ''), "B", 1, 'L')
 
-        # Linha 4: NIF e Registo
-        self.cell(30, 8, "Contribuinte:", 0, 0, 'L')
-        self.cell(60, 8, dados.get('tec_nif', ''), "B", 0, 'L')
-        self.cell(40, 8, "Nº DGEG/OET:", 0, 0, 'R')
-        self.cell(60, 8, dados.get('tec_registo', ''), "B", 1, 'L')
+        self.cell(30, 8, "Contribuinte:", 0, 0, 'L'); self.cell(60, 8, dados.get('tec_nif', ''), "B", 0, 'L')
+        self.cell(40, 8, "Nº DGEG/OET:", 0, 0, 'R'); self.cell(60, 8, dados.get('tec_registo', ''), "B", 1, 'L')
         
         self.ln(10)
         self.cell(0, 10, "Assinatura: __________________________________________________", 0, 1, 'R')
@@ -264,13 +246,39 @@ def gerar_pdf_final(dados: dict, imagens: list):
     pdf.cell(0, 15, titulo, 0, 1, 'C', True)
     pdf.ln(5)
 
-    # Dados Cliente
+    # Dados Gerais (Cliente, Local, Data)
     pdf.set_font("Arial", size=10)
-    pdf.cell(30, 7, "Cliente:", 0, 0); pdf.cell(0, 7, dados.get('cliente', ''), 1, 1)
-    pdf.cell(30, 7, "Data:", 0, 0); pdf.cell(0, 7, dados.get('data_relatorio', ''), 1, 1)
+    
+    # Função auxiliar para imprimir linhas chave: valor
+    def print_field(label, value):
+        pdf.set_font("Arial", 'B', 10)
+        pdf.cell(40, 7, label, 0, 0)
+        pdf.set_font("Arial", size=10)
+        pdf.cell(0, 7, str(value), 0, 1)
+
+    print_field("Localidade:", dados.get('localidade', ''))
+    print_field("Data:", dados.get('data_relatorio', ''))
+    
+    # --- DADOS ESPECÍFICOS DE CADA RELATÓRIO ---
+    pdf.ln(2)
     
     if tipo == 'gas':
-        pdf.cell(30, 7, "Instalação:", 0, 0); pdf.cell(0, 7, dados.get('instalacao', ''), 1, 1)
+        # Gás: Tipo de Sistema e Instalação
+        print_field("Instalação:", dados.get('instalacao', ''))
+        tipo_gas = dados.get('tipo_gas', '').replace('_', ' ').title()
+        print_field("Sistema:", tipo_gas)
+
+    elif tipo == 'incendio':
+        # Incêndio: Tipo de Sistema
+        tipo_incendio = dados.get('tipo_incendio', '').title()
+        print_field("Sistema:", tipo_incendio)
+
+    elif tipo == 'eletrico':
+        # Elétrico: kVA e Tipo PT
+        kva = dados.get('pt_kva', '')
+        tipo_pt = dados.get('tipo_pt', '')
+        print_field("Potência PT:", f"{kva} kVA")
+        print_field("Tipo PT:", tipo_pt)
     
     pdf.ln(5)
 
@@ -323,7 +331,6 @@ def gerar_linhas_tabela(nome_lista, prefixo_radio):
     return html
 
 def gerar_inputs_repetidos(qtd, campos):
-    """Gera tabelas de inputs repetidos para Components, Equipamentos, etc."""
     html = ""
     for i in range(qtd):
         html += "<tr>"
@@ -368,13 +375,13 @@ html_app = f"""
 </head>
 <body>
     <div class="container">
-        <h1 style="text-align:center;">📋 Relatório Técnico</h1>
+        <h1 style="text-align:center;"> Relatório Técnico</h1>
         
         <form action="/gerar-relatorio" method="post" enctype="multipart/form-data" onsubmit="guardarDados()">
             
             <div class="grupo-input">
-                <label>Cliente / Obra:</label>
-                <input type="text" name="cliente" required placeholder="Nome do Cliente">
+                <label>Localidade:</label>
+                <input type="text" name="localidade" required>
             </div>
             <div class="grupo-input">
                 <label>Data:</label>
@@ -385,15 +392,22 @@ html_app = f"""
                 <label>Tipo de Intervenção:</label>
                 <select id="tipo_relatorio" name="tipo_relatorio" onchange="mudarForm()" style="background:#fff3cd; font-weight:bold;">
                     <option value="">-- Selecione --</option>
-                    <option value="gas">🔥 Gás e Monóxido</option>
-                    <option value="incendio">🧯 Incêndio (SADI)</option>
-                    <option value="eletrico">⚡ Elétrico / PT</option>
+                    <option value="gas">Relatório de Verificação Regular / Manutenção Sistemas Automáticos de Deteção de Gás Combustível e de Monóxido de Carbono</option>
+                    <option value="incendio">Relatório de Verificação Regular / Manutenção Sistemas Automáticos de Deteção de Incêndio</option>
+                    <option value="eletrico">Relatório de Vistoria Instalações Elétricas Posto de Transformação e Instalações de Utilização</option>
                 </select>
             </div>
 
             <hr>
 
             <div id="form-gas" class="hidden">
+                <div class="grupo-input">
+                    <label>Tipo de Sistema (Gás):</label>
+                    <select name="tipo_gas">
+                        <option value="gas_combustivel">Gás Combustível</option>
+                        <option value="monoxido_carbono">Monóxido de Carbono</option>
+                    </select>
+                </div>
                 <div class="grupo-input"><label>Instalação:</label><input type="text" name="instalacao"></div>
                 <table>
                     <tr><th>Ação Verificação</th><th>V</th><th>NA</th><th>OBS</th></tr>
@@ -402,6 +416,13 @@ html_app = f"""
             </div>
 
             <div id="form-incendio" class="hidden">
+                <div class="grupo-input">
+                    <label>Tipo de Sistema (Incêndio):</label>
+                    <select name="tipo_incendio">
+                        <option value="convencional">Convencional</option>
+                        <option value="enderecavel">Endereçável</option>
+                    </select>
+                </div>
                 <table>
                     <tr><th>Ação Verificação</th><th>V</th><th>NA</th><th>OBS</th></tr>
                     {gerar_linhas_tabela(ITENS_INCENDIO, 'check')}
@@ -409,6 +430,21 @@ html_app = f"""
             </div>
 
             <div id="form-eletrico" class="hidden">
+                <div style="display:flex; gap:10px;">
+                    <div style="flex:1">
+                        <label>Potência PT (kVA):</label>
+                        <input type="number" name="pt_kva" placeholder="Ex: 250">
+                    </div>
+                    <div style="flex:1">
+                        <label>Tipo PT:</label>
+                        <select name="tipo_pt">
+                            <option value="CA">CA</option>
+                            <option value="CB">CB</option>
+                            <option value="AI">AI</option>
+                        </select>
+                    </div>
+                </div>
+                <br>
                 <table>
                     <tr><th>Ação Verificação</th><th>V</th><th>NA</th><th>OBS</th></tr>
                     {gerar_linhas_tabela(ITENS_ELETRICO, 'check')}
@@ -450,7 +486,7 @@ html_app = f"""
             <input type="file" name="fotos" accept="image/*" multiple>
 
             <div class="seccao-tecnico">
-                <h3>👷 Identificação do Técnico</h3>
+                <h3> Identificação do Técnico</h3>
                 <div class="grupo-input"><label>Nome Completo:</label><input type="text" name="tec_nome" id="tec_nome"></div>
                 <div style="display:flex; gap:10px;">
                     <div style="flex:1"><label>CC Nº:</label><input type="text" name="tec_cc" id="tec_cc"></div>
