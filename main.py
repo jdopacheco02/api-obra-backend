@@ -18,63 +18,83 @@ app.add_middleware(
 # --- 1. LISTAS DE VERIFICAÇÃO (CHECKLISTS) ---
 
 ITENS_GAS = [
-    "Inspeção Visual: Efetuar a inspeção visual da central e do conjunto dos detetores...",
-    "Inspeção Visual: Verificar se existe identificação de zonas / detetores",
-    "Detetores: Confirmar o posicionamento dos detetores em função do gás a detetar",
-    "Detetores: Verificar a validade",
-    "Detetores: Efetuar o teste de detenção a todos os detetores...",
-    "Sinalizador Ótico-Acústico: Verificar a visibilidade e som",
-    "Sinalizador Ótico-Acústico: Verificar a fixação e estado de conservação",
-    "Sinalizador Ótico-Acústico: Verificar a descrição 'Atmosfera Perigosa - Tipo de Gás'",
-    "Sinalizador Ótico-Acústico: Verificar a descrição 'Atmosfera Saturada - CO'",
-    "Central: Efetuar ensaios de zona",
-    "Central: Verificar as funções de monitorização de anomalias",
-    "Central: Confirmar que a programação do equipamento está de acordo...",
-    "Central: Verificar a capacidade de operar comandos (Ventilação - CO)",
-    "Central: Verificar a capacidade de operar comandos (Eletroválvulas - Gás)",
-    "Central: Comprovar o correto funcionamento da unidade de alimentação e baterias",
-    "Fonte de Alimentação: Verificar o teste de carga das baterias",
-    "Fonte de Alimentação: Verificação das tensões de Entrada / Saída",
-    "Fonte de Alimentação: Limpeza e reaperto de bornes",
-    "Painel Repetidor: Verificar indicações visuais",
-    "Painel Repetidor: Verificar os botões e comandos"
+    "**Inspeção Visual: **Efetuar a inspeção visual da central e do conjunto dos detetores...",
+    "**Inspeção Visual: **Verificar se existe identificação de zonas / detetores",
+    "**Detetores: **Confirmar o posicionamento dos detetores em função do gás a detetar",
+    "**Detetores: **Verificar a validade",
+    "**Detetores: **Efetuar o teste de detenção a todos os detetores...",
+    "**Sinalizador Ótico-Acústico: **Verificar a visibilidade e som",
+    "**Sinalizador Ótico-Acústico: **Verificar a fixação e estado de conservação",
+    "**Sinalizador Ótico-Acústico: **Verificar a descrição 'Atmosfera Perigosa - Tipo de Gás'",
+    "**Sinalizador Ótico-Acústico: **Verificar a descrição 'Atmosfera Saturada - CO'",
+    "**Central: **Efetuar ensaios de zona",
+    "**Central: **Verificar as funções de monitorização de anomalias",
+    "**Central: **Confirmar que a programação do equipamento está de acordo...",
+    "**Central: **Verificar a capacidade de operar comandos (Ventilação - CO)",
+    "**Central: **Verificar a capacidade de operar comandos (Eletroválvulas - Gás)",
+    "**Central: **Comprovar o correto funcionamento da unidade de alimentação e baterias",
+    "**Fonte de Alimentação: **Verificar o teste de carga das baterias",
+    "**Fonte de Alimentação: **Verificação das tensões de Entrada / Saída",
+    "**Fonte de Alimentação: **Limpeza e reaperto de bornes",
+    "**Painel Repetidor: **Verificar indicações visuais",
+    "**Painel Repetidor: **Verificar os botões e comandos"
 ]
 
 ITENS_INCENDIO = [
-    "Inspeção Visual: Efetuar a inspeção visual da central e do conjunto dos detetores, botões de alarme e demais periféricos e verificar se existem danos visíveis ou outras condições que ponham em causa o funcionamento / desempenho do sistema",
-    "Inspeção Visual: Verificar se existe identificação de zonas (Sistema Convencional)",
-    "Detetores: Realizar ensaios de deteção a 25 por cento dos detetores, no mínimo 1 por zona, assegurando que ao fim de 2 anos todos os detetores serão testados",
-    "Detetores: Verificar se é conservado um espaço de pelo menos 0,5m e desimpedido em todas as direções abaixo de cada detetor",
-    "Botões de Alarme: Comprovar o correto funcionamento de todos os botões",
-    "Sirenes: Comprovar o correto funcionamento de todas as sirenes",
-    "Central: Verificar indicações visuais",
-    "Central: Verificar os botões e comandos",
-    "Central: Confirmar que a programação do equipamento está de acordo com o funcionamento atualmente aprovado para o edifício. De acordo com o projeto e subsequentes alterações registadas no registo de ocorrências / registo de segurança",
-    "Central: Comrpovar o correto funcionamento da unidade de alimentação e testar a carga das baterias de forma a garantir a autonomia mínima prevista no Regulamento Técnico de SCIE",
-    "Sinalizadores: Comprovar o correto funcionamento de todos os sinalizadores",
-    "Transmissor Telefónico: Comprovar o correto funcionamento da Transmissão / Receção",
-    "Fonte de Alimentação: Verificar o aperto dos bornes de ligação e garantir o estado de conservação e limpeza",
-    "Fonte de Alimentação: Comprovar o correto funcionamento",
-    "Fonte de Alimentação: Comprovar o correto funcionamento da unidade de alimentação e testar a carga das baterias de forma a garantir a autonomia mínima prevista no Regulamento Técnico de SCIE",
-    "Retentores: Lubrificar e limpar partes móveis",
-    "Interação a Sistemas Exteriores: Verificar o estado de operacionalidade da interação com outros equipamentos ou sistemas exteriores (por exemplo, elevadores, portas resistentes ao fogo, registos corta-fogo, sistemas de controlo de fumo e ventilação, quadros elétricos, etc.)",
-    "Painel Repetidor: Verificar indicações visuais",
-    "Painel Repetidor: Verificar os botões e comandos",
-    "Painel Repetidor: Comprovar o correto funcionamento da unidade de alimentação e testar a carga das baterias de forma a garantir a autonomia mínima prevista no Regulamento Técnico de SCIE"
+    "**Inspeção Visual: **Efetuar a inspeção visual da central e do conjunto dos detetores, botões de alarme e demais periféricos e verificar se existem danos visíveis ou outras condições que ponham em causa o funcionamento / desempenho do sistema",
+    "**Inspeção Visual: **Verificar se existe identificação de zonas (Sistema Convencional)",
+    "**Detetores: **Realizar ensaios de deteção a 25 por cento dos detetores, no mínimo 1 por zona, assegurando que ao fim de 2 anos todos os detetores serão testados",
+    "**Detetores: **Verificar se é conservado um espaço de pelo menos 0,5m e desimpedido em todas as direções abaixo de cada detetor",
+    "**Botões de Alarme: **Comprovar o correto funcionamento de todos os botões",
+    "**Sirenes: **Comprovar o correto funcionamento de todas as sirenes",
+    "**Central: **Verificar indicações visuais",
+    "**Central: **Verificar os botões e comandos",
+    "**Central: **Confirmar que a programação do equipamento está de acordo com o funcionamento atualmente aprovado para o edifício. De acordo com o projeto e subsequentes alterações registadas no registo de ocorrências / registo de segurança",
+    "**Central: **Comrpovar o correto funcionamento da unidade de alimentação e testar a carga das baterias de forma a garantir a autonomia mínima prevista no Regulamento Técnico de SCIE",
+    "**Sinalizadores: **Comprovar o correto funcionamento de todos os sinalizadores",
+    "**Transmissor Telefónico: **Comprovar o correto funcionamento da Transmissão / Receção",
+    "**Fonte de Alimentação: **Verificar o aperto dos bornes de ligação e garantir o estado de conservação e limpeza",
+    "**Fonte de Alimentação: **Comprovar o correto funcionamento",
+    "**Fonte de Alimentação: **Comprovar o correto funcionamento da unidade de alimentação e testar a carga das baterias de forma a garantir a autonomia mínima prevista no Regulamento Técnico de SCIE",
+    "**Retentores: **Lubrificar e limpar partes móveis",
+    "**Interação a Sistemas Exteriores: **Verificar o estado de operacionalidade da interação com outros equipamentos ou sistemas exteriores (por exemplo, elevadores, portas resistentes ao fogo, registos corta-fogo, sistemas de controlo de fumo e ventilação, quadros elétricos, etc.)",
+    "**Painel Repetidor: **Verificar indicações visuais",
+    "**Painel Repetidor: **Verificar os botões e comandos",
+    "**Painel Repetidor: **Comprovar o correto funcionamento da unidade de alimentação e testar a carga das baterias de forma a garantir a autonomia mínima prevista no Regulamento Técnico de SCIE"
     
 ]
 
 ITENS_ELETRICO = [
-    "Estado geral do Quadro Geral Baixa Tensão (QGBT)",
-    "Verificação de aquecimentos (Termografia visual)",
-    "Reaperto de ligações elétricas (Bornes/Barramentos)",
-    "Teste dos botões de teste dos Diferenciais",
-    "Verificação da continuidade do condutor de proteção (Terra)",
-    "Verificação da seletividade das proteções",
-    "Limpeza interior e exterior dos quadros",
-    "Estado da iluminação de emergência (Autonomia)",
-    "Verificação do Posto de Transformação (Nível óleo/Sílica)",
-    "Existência de esquemas elétricos e sinalização de perigo"
+    "**Posto de Transformação: **Medição da resistência da terra de proteção",
+    "**Posto de Transformação: **Medição da resistência da terra de serviço",
+    "**Posto de Transformação: **Medição da resistência de isolamento da instalação de baixa tensão",
+    "**Posto de Transformação: **Verificação da acidez e rigidez dos óleos nos transformadores e/ou disjuntores de alta tensão",
+    "**Posto de Transformação: **Medição do fator de potência",
+    "**Posto de Transformação: **Verificação do nível de óleo nos transformadores e/ou disjuntores de alta tensão",
+    "**Posto de Transformação: **Verificação do estado dos contatos dos disjuntores e das câmaras de corte dos interruptores",
+    "**Posto de Transformação: **Verificação dos circuitos de terra e o estado de conservação dos elétrodos e dos condutores enterrados",
+    "**Posto de Transformação: **Verificação da conservação dos dispositivos de manobra utilizados (varas de manobra, estrados, tapetes, isolanetes, luvas isolantes, etc.)",
+    "**Posto de Transformação: **Verificação da carga do transformador e a temperatura do óleo nos períodos de maior carga",
+    "**Posto de Transformação: **Verificação do estado de funcionamento dos dispositivos de proteção e de alarme",
+    "**Instalação de Utilização em Baixa Tensão: **Medição da resistência da terra de proteção",
+    "**Instalação de Utilização em Baixa Tensão: **Medição da impedância de defeito",
+    "**Instalação de Utilização em Baixa Tensão: **Medição da resistência de isolamento",
+    "**Instalação de Utilização em Baixa Tensão: **Verificação da proteção contra contatos indiretos",
+    "**Instalação de Utilização em Baixa Tensão: **Verificação dos aparelhos de proteção contra sobreintensidades",
+    "**Instalação de Utilização em Baixa Tensão: **Verificação da eficácia das proteções contra contatos indiretos",
+    "**Instalação de Utilização em Baixa Tensão: **Verificação do aquecimento e o estado do isolamento dos condutores/cabos",
+    "**Instalação de Utilização em Baixa Tensão: **Verificação do estado dos aparelhos de corte e de comando",
+    "**Instalação de Utilização em Baixa Tensão: **Verificação do estado dos aparelhos de utilização",
+    "**Instalação de Utilização em Baixa Tensão: **Verificação da inexistência de materiais de reserva ou acessórios indispensáveis",
+    "**Instalação de Utilização em Baixa Tensão: **Verificação da existência de instruções de primeiros socorros",
+    "**Instalação de Utilização em Baixa Tensão: **Verificação de práticas, sem cuidado devido, de métodos de trabalho suscetíveis de provocar contatos diretos",
+    "**Instalação de Utilização em Baixa Tensão: **Verificação de utilização diferentes das inicialmente previstas a alguns locais servidos pela instalação",
+    "**Instalações de Emergência: **Verificação das condições de arranque das fontes de alimentação",
+    "**Instalações de Emergência: **Verificação do estado das baterias, nomeadamente o eletrólito",
+    "**Instalações de Emergência: **Verificação do estado de funiconamento dos blocos autónomos",
+    "**Instalações de Emergência: **Verificação da autonomia dos blocos autónomos"
+
+
 ]
 
 # --- 2. CLASSE GERADORA DE PDF ---
@@ -245,13 +265,13 @@ def gerar_pdf_final(dados: dict, imagens: list):
     lista_checks = []
 
     if tipo == 'gas':
-        titulo = "MANUTENÇÃO GÁS E MONÓXIDO"
+        titulo = "RELATÓRIO DE VERIFICAÇÃO REGULAR / MANUTENÇÃO SISTEMAS AUTOMÁTICOS DE DETEÇÃO DE GÁS COMBUSTÍVEL E DE MONÓXIDO DE CARBONO (CO)"
         lista_checks = ITENS_GAS
     elif tipo == 'incendio':
-        titulo = "MANUTENÇÃO SADI (INCÊNDIO)"
+        titulo = "RELATÓRIO DE VERIFICAÇÃO REGULAR / MANUTENÇÃO SISTEMAS AUTOMÁTICOS DE DETEÇÃO DE INCÊNDIO"
         lista_checks = ITENS_INCENDIO
     elif tipo == 'eletrico':
-        titulo = "VISTORIA ELÉTRICA / PT"
+        titulo = "RELATÓRIO DE VISTORIA INSTALAÇÕES ELÉTRICAS POSTO DE TRANSFORMAÇÃO E INSTALAÇÕES DE UTILIZAÇÃO"
         lista_checks = ITENS_ELETRICO
 
     pdf.cell(0, 15, titulo, 0, 1, 'C', True)
