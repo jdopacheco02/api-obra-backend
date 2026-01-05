@@ -92,7 +92,7 @@ ITENS_ELETRICO = [
     "**Instalações de Emergência: **Verificação das condições de arranque das fontes de alimentação",
     "**Instalações de Emergência: **Verificação do estado das baterias, nomeadamente o eletrólito",
     "**Instalações de Emergência: **Verificação do estado de funiconamento dos blocos autónomos",
-    "**Instalações de Emergência: **Verificação da autonomia dos blocos autónomos"
+    "**Instalações de Emergência:** Verificação da autonomia dos blocos autónomos"
 
 
 ]
